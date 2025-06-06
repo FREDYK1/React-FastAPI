@@ -5,7 +5,7 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 
 class Product(Model):
     id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255 nullable=False)
+    name = fields.CharField(max_length=255, nullable=False)
     quatantity_in_stock = fields.IntField(default=0)
     quantity_sold = fields.IntField(default=0)
     unit_price = fields.DecimalField(max_digits=10, decimal_places=2, default=0.00)
