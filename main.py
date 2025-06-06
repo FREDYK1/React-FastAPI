@@ -11,7 +11,7 @@ def index():
 
 @app.post("/supplier")
 async def add_supplier(supplier_info: supplier_pydanticIn):
-    supplier_object = await Supplier.create(**supplier_info.dict())
+    supplier_object = await Supplier.create(**supplier_info.dict(exclude_unset=True))
     response = await supplier_pydantic.from_tortoise_orm(supplier_object)
     return {"status": "ok", "data": response}
 
@@ -19,6 +19,11 @@ async def add_supplier(supplier_info: supplier_pydanticIn):
 @app.get("/supplier")
 async def get_all_suppliers():
     response = await supplier_pydantic.from_queryset(Supplier.all())
+    return {"status": "ok", "data": response}
+
+@app.get("/supplier/{supplier_id}")
+async def get_specific_supplier(supplier_id: int):
+    response = await supplier_pydantic.from_queryset_single(Supplier.get(id=supplier_pydantic))
     return {"status": "ok", "data": response}
 
 
