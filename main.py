@@ -23,7 +23,7 @@ async def get_all_suppliers():
 
 @app.get("/supplier/{supplier_id}")
 async def get_specific_supplier(supplier_id: int):
-    response = await supplier_pydantic.from_queryset_single(Supplier.get(id=supplier_pydantic))
+    response = await supplier_pydantic.from_queryset_single(Supplier.get(id=supplier_id))
     return {"status": "ok", "data": response}
 
 
