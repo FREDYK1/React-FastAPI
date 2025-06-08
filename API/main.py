@@ -11,7 +11,7 @@ from dotenv import dotenv_values
 from fastapi.middleware.cors import  CORSMiddleware
 
 
-credentials = dotenv_values(".env")
+credentials = dotenv_values("../.env")
 
 app = FastAPI()
 
