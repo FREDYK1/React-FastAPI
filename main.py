@@ -8,11 +8,28 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from typing import List
 from pydantic import BaseModel, EmailStr
 from dotenv import dotenv_values
+from fastapi.middleware.cors import  CORSMiddleware
 
 
 credentials = dotenv_values(".env")
 
 app = FastAPI()
+
+# Middleware for CORS
+origins = [
+    "http://localhost:3000",
+]
+
+#add CORS middleware to allow requests from specified origins
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/")
 def index():
