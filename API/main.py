@@ -79,7 +79,7 @@ async def add_product(supplier_id: int, product_details: product_pydanticIn):
     response = await product_pydantic.from_tortoise_orm(product_obj)
     return {"status": "ok", "data": response}
 
-@app.get("/product")
+@app.get("/products")
 async def get_all_products():
     response =  await product_pydantic.from_queryset(Product.all())
     return {"status": "ok", "data": response}

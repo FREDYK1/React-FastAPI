@@ -1,15 +1,17 @@
-import react from "react";
+import react, {useContext} from "react";
 import { Navbar, Nav, Form, FormControl, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../ProductContext';
 
 const NavBar = () => {
+    const [products, setProducts] = useContext(ProductContext);
     return (
         <Navbar bg="dark" expand="lg" variant="dark" className="border-bottom border-primary" style={{ boxShadow: '0 2px 0 #0d6efd' }}>
             <Navbar.Brand href="#home">Inventory Management App</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Badge className="mt-2 ms-3" bg="primary">Products In stock</Badge>
+                    <Badge className="mt-2 ms-3" bg="primary">Products In stock { products.data.length }</Badge>
                 </Nav>
                 <Form className="d-flex align-items-center">
                     <Link to="/addproduct" className="btn btn-primary btn-sm me-3">Add Product</Link>
