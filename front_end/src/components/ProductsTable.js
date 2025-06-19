@@ -3,13 +3,14 @@ import { Table } from 'react-bootstrap';
 import { ProductContext } from '../ProductContext';
 
 const ProductsTable = () => {
-    const { products, setProducts } = useContext(ProductContext);
+    const [products, setProducts]  = useContext(ProductContext);
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/products")
-            .then(response => response.json())
-            .then(data => {
-                setProducts(Array.isArray(data) ? data : []);
+            .then(response => {return response.json();})
+            .then(results => {
+                console.log(results);
+                setProducts(results.data);
             })
             .catch(error => {
                 console.error("Failed to fetch:", error);
