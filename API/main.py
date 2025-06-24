@@ -1,9 +1,8 @@
-from fastapi import FastAPI, BackgroundTasks, UploadFile, File, Form
+from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 from models import (supplier_pydantic, supplier_pydanticIn, Supplier,
                     product_pydanticIn, product_pydantic, Product)
 from starlette.responses import JSONResponse
-from starlette.requests import Request
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from typing import List
 from pydantic import BaseModel, EmailStr
